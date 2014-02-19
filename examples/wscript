@@ -1,0 +1,26 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    obj = bld.create_ns3_program('sorrouting-example', ['netanim','sor-routing','point-to-point','internet', 'network', 'mesh', 'applications'])
+    obj.source = 'sor-routing-example.cc'
+
+    obj = bld.create_ns3_program('sortestrouting-example', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications'])
+    obj.source = 'sor-test-topo_routing.cc'
+
+    obj = bld.create_ns3_program('srrtsimple', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications'])
+    obj.source = 'simple-test.cc'
+       
+    obj = bld.create_ns3_program('topo10', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_10.cc'
+
+    obj = bld.create_ns3_program('topo20', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_20.cc'
+
+    obj = bld.create_ns3_program('topo30', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_30.cc'
+
+    obj = bld.create_ns3_program('topo40', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_40.cc'
+
+    obj = bld.create_ns3_program('topo50', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_50.cc'
