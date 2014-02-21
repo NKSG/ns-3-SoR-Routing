@@ -143,7 +143,7 @@ private:
       PacketQueue m_queue;
 
       /// Flag that is used to enable or disable buffering
-      bool EnableBuffering;
+      bool enableBuffering;
 
       /// Unicast callback for own packets
       //  This is for Protocol Purposes only

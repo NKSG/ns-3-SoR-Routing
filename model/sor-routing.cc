@@ -123,7 +123,7 @@ TypeId RoutingProtocol::GetTypeId (void)
                   TimeValue (Seconds (10)),
                   MakeTimeAccessor (&RoutingProtocol::m_maxNeighborWaitTime),
                   MakeTimeChecker ())
-            .AddAttribute ("EnableBuffering","Enables buffering of data packets if no route to destination is available",
+            .AddAttribute ("enableBuffering","Enables buffering of data packets if no route to destination is available",
                   BooleanValue (true),
                   MakeBooleanAccessor (&RoutingProtocol::SetEnableBufferFlag,&RoutingProtocol::GetEnableBufferFlag),
                   MakeBooleanChecker ())
@@ -137,12 +137,12 @@ TypeId RoutingProtocol::GetTypeId (void)
 void 
 RoutingProtocol::SetEnableBufferFlag (bool f)
 {  
-      EnableBuffering = f;
+      enableBuffering = f;
 }
 bool 
 RoutingProtocol::GetEnableBufferFlag () const
 { 
-      return EnableBuffering;
+      return enableBuffering;
 }
 
 int64_t 
@@ -874,7 +874,7 @@ RoutingProtocol::RouteOutput (Ptr<Packet> p, const Ipv4Header &header,Ptr<NetDev
 
 	if (m_routingTable.LookupRoute (dst,rt))
 	{
-		if (EnableBuffering)
+		if (enableBuffering)
 		{
 			LookForQueuedPackets (); 
 		}
@@ -913,7 +913,7 @@ RoutingProtocol::RouteOutput (Ptr<Packet> p, const Ipv4Header &header,Ptr<NetDev
 	}
 
         //if a no route is find and the local buffer is enable the packets will be delivered to the Local buffer
-	if (EnableBuffering) // if the routing buffer is enable 
+	if (enableBuffering) // if the routing buffer is enable 
 	{
 		uint32_t iif = (oif ? m_ipv4->GetInterfaceForDevice (oif) : -1);
 		DeferredRouteOutputTag tag (iif);
@@ -961,7 +961,7 @@ RoutingProtocol::RouteInput (Ptr<const Packet> p, const Ipv4Header &header,
 
         // Deferred route request  
         // add the packet to the local Queue  
-        if (EnableBuffering == true && idev == m_lo)
+        if (enableBuffering == true && idev == m_lo)
         {
                 DeferredRouteOutputTag tag;
                 if (p->PeekPacketTag (tag))

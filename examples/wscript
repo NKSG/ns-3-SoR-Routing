@@ -24,3 +24,6 @@ def build(bld):
 
     obj = bld.create_ns3_program('topo50', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
     obj.source = 'topo_50.cc'
+
+    obj = bld.create_ns3_program('topo100', ['netanim','sor-routing','point-to-point', 'csma', 'internet', 'network', 'mesh', 'applications', 'nix-vector-routing'])
+    obj.source = 'topo_100.cc'
