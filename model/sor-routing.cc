@@ -119,18 +119,14 @@ TypeId RoutingProtocol::GetTypeId (void)
                   TimeValue (Seconds (3*15)),/*keep the packet for three updates*/
                   MakeTimeAccessor (&RoutingProtocol::m_maxQueueTime),
                   MakeTimeChecker ())
-            .AddAttribute ("MaxNeighborTime","Maximum time that a neighbor table record can be waiting in the neighbor table without sending a keep alive message",
+            .AddAttribute ("MaxNeighborTime","Maximum time that a neighbor table record can be waiting in the neighbor table without recieving a keep alive message",
                   TimeValue (Seconds (10)),
                   MakeTimeAccessor (&RoutingProtocol::m_maxNeighborWaitTime),
                   MakeTimeChecker ())
             .AddAttribute ("enableBuffering","Enables buffering of data packets if no route to destination is available",
                   BooleanValue (true),
                   MakeBooleanAccessor (&RoutingProtocol::SetEnableBufferFlag,&RoutingProtocol::GetEnableBufferFlag),
-                  MakeBooleanChecker ())
-            .AddAttribute ("Holdtimes","Times the forwarding IntervaghtedFactorl to purge the route.",
-                  UintegerValue (3),
-                  MakeUintegerAccessor (&RoutingProtocol::Holdtimes),
-                  MakeUintegerChecker<uint32_t> ());
+                  MakeBooleanChecker ());
       return tid;
 }
 
@@ -418,8 +414,6 @@ RoutingProtocol::Start ()
 {  
         m_queue.SetMaxQueueLen (m_maxQueueLen);
         m_queue.SetQueueTimeout (m_maxQueueTime);
-        m_routingTable.Setholddowntime (Time (Holdtimes * m_periodicUpdateInterval));
-        m_advRoutingTable.Setholddowntime (Time (Holdtimes * m_periodicUpdateInterval));
 
         m_scb = MakeCallback (&RoutingProtocol::Send,this);
         m_ecb = MakeCallback (&RoutingProtocol::Drop,this);
