@@ -321,6 +321,14 @@ public:
           * \return EventId on finding out an event is associated else return NULL.
           */
           EventId GetEventId (Ipv4Address address);
+          Time Getholddowntime () const
+          {
+                return m_holddownTime;
+          }
+          void Setholddowntime (Time t)
+          {
+                m_holddownTime = t;
+          }
 
 private:
       /// an entry in the routing table.

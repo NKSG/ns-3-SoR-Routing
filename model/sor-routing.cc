@@ -414,6 +414,8 @@ RoutingProtocol::Start ()
 {  
         m_queue.SetMaxQueueLen (m_maxQueueLen);
         m_queue.SetQueueTimeout (m_maxQueueTime);
+        m_routingTable.Setholddowntime (Time (3 * m_periodicUpdateInterval));
+        m_advRoutingTable.Setholddowntime (Time (3 * m_periodicUpdateInterval));
 
         m_scb = MakeCallback (&RoutingProtocol::Send,this);
         m_ecb = MakeCallback (&RoutingProtocol::Drop,this);
